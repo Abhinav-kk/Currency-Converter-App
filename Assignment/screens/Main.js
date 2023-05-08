@@ -210,6 +210,14 @@ export default function Main() {
         setValue(value2);
         setValue2(temp);
         convert();
+
+        let temp2 = inputCurrencyValue;
+        setInputCurrencyValue(result);
+        setResult(temp2);
+    }
+
+    function calculate(val) {
+        setResult(Math.round(val * outputCurrencyValue * 100) / 100);
     }
 
     return (
@@ -279,7 +287,8 @@ export default function Main() {
                                 keyboardType='numeric'
                                 style={styles.TextInput}
                                 placeholder="0"
-                                onChangeText={(val) => { setInputCurrencyValue(val); setResult(Math.round(val * outputCurrencyValue * 100) / 100); }}
+                                value={inputCurrencyValue.toString()}
+                                onChangeText={(val) => { setInputCurrencyValue(val); calculate(val) }}
                             />
                             <Text style={styles.currencyLabel}>{value}</Text>
                         </View>
